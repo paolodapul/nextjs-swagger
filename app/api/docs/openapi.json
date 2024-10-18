@@ -5,12 +5,6 @@
     "version": "1.0.0",
     "description": "A simple API to return a greeting message."
   },
-  "servers": [
-    {
-      "url": "http://localhost:3000",
-      "description": "Development server"
-    }
-  ],
   "paths": {
     "/api/hello": {
       "get": {
