@@ -2,11 +2,11 @@
  * @openapi
  * /api/hello:
  *   get:
- *     description: Call to /hello!
+ *     description: Call to /api/hello!
  *     responses:
  *       200:
- *         description: Returns something
+ *         description: Returns "Hello!"
  */
 export function GET() {
-  return Response.json({ message: "Hello, world!" });
+  return Response.json({ message: "Hello!" });
 }
