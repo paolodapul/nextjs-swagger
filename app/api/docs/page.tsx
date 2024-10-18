@@ -29,9 +29,11 @@ async function findRouteFilesRecursive(dir: string): Promise<string[]> {
 }
 
 export default async function Page() {
-  const routeFiles = await findRouteFilesRecursive(
-    path.resolve(process.cwd() + "/app/api")
-  );
+  const basepath =
+    process.env.NODE_ENV === "production"
+      ? path.join(process.cwd(), "/app/api")
+      : process.cwd();
+  const routeFiles = await findRouteFilesRecursive(basepath);
 
   const headersList = headers();
   const host = headersList.get("host"); // to get domain
