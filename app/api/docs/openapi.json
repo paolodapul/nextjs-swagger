@@ -8,11 +8,11 @@
   "paths": {
     "/api/hello": {
       "get": {
-        "summary": "Get a greeting message",
+        "summary": "Get a hello message",
         "operationId": "getHello",
         "responses": {
           "200": {
-            "description": "A greeting message",
+            "description": "A hello message",
             "content": {
               "application/json": {
                 "schema": {
@@ -21,6 +21,30 @@
                     "message": {
                       "type": "string",
                       "example": "Hello, world!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/world": {
+      "get": {
+        "summary": "Get a world message",
+        "operationId": "getWorld",
+        "responses": {
+          "200": {
+            "description": "A world message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "World"
                     }
                   }
                 }
