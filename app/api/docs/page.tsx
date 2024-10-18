@@ -4,6 +4,7 @@ import path from "path";
 import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
 import swaggerJsdoc from "swagger-jsdoc";
+import { headers } from "next/headers";
 
 async function findRouteFilesRecursive(dir: string): Promise<string[]> {
   let results: string[] = [];
@@ -29,6 +30,10 @@ async function findRouteFilesRecursive(dir: string): Promise<string[]> {
 
 export default async function Page() {
   const routeFiles = await findRouteFilesRecursive(process.cwd());
+
+  const headersList = headers();
+  const host = headersList.get("host"); // to get domain
+  console.log("host", host);
 
   const options = {
     definition: {
