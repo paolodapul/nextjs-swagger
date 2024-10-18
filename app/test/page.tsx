@@ -18,7 +18,7 @@ export default async function Page() {
         version: "1.0.0",
       },
     },
-    apis: [...routeFiles], // files containing annotations as above
+    apis: [...routeFiles], // files containing annotations
   };
 
   const openapiSpecification = swaggerJSDoc(options);
