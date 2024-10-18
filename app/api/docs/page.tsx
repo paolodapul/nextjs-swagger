@@ -18,8 +18,8 @@ async function findRouteFilesRecursive(dir: string): Promise<string[]> {
       // Recursively search in subdirectories
       const subDirResults = await findRouteFilesRecursive(filePath);
       results = results.concat(subDirResults);
-    } else if (file === "route.ts") {
-      // If it's a file and matches 'route.ts'
+    } else if (file === "route.ts" && !filePath.includes(".next/")) {
+      // If it's a file and matches 'route.ts', and doesn't contain '.next/'
       results.push(filePath);
     }
   });
