@@ -83,3 +83,42 @@ export function GET() {
 - Swagger takes care of calling your route handlers using the base URL, even if you don't explicitly define it on your `options` object.
 - You can render the documentation component as a server component.
 - Still breaks when using Turbopack for some reason
+
+---
+
+- Apparently, my initial AI-generated recursive function for finding file paths of all instances of `route.ts` weren't working on Vercel
+- I used `glob` instead, and I finally made it work :) it's also the cleanest solution I've got
+
+---
+
+# Final solution
+
+```typescript
+import { glob } from "glob";
+import swaggerJSDoc from "swagger-jsdoc";
+import SwaggerUI from "swagger-ui-react";
+import "swagger-ui-react/swagger-ui.css";
+
+export default async function Page() {
+  const routeFiles = (
+    await glob("**/route.ts", {
+      ignore: "node_modules/**",
+    })
+  ).map((r) => `${process.cwd() + "/" + r}`);
+
+  const options = {
+    definition: {
+      openapi: "3.0.0",
+      info: {
+        title: "Hello World",
+        version: "1.0.0",
+      },
+    },
+    apis: [...routeFiles], // files containing annotations
+  };
+
+  const openapiSpecification = swaggerJSDoc(options);
+
+  return <SwaggerUI spec={openapiSpecification} />;
+}
+```
