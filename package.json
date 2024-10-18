@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@scalar/nextjs-api-reference": "^0.4.96",
     "express": "^4.21.1",
     "next": "14.2.15",
     "react": "^18",
